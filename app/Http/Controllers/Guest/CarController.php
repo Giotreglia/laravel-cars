@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Guest;
 
+use App\Http\Controllers\Guest\CarController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -48,7 +49,8 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+        $car = Car::findOrFail($id);
+        return view('cars.show', compact('car'));
     }
 
     /**
@@ -59,7 +61,8 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $car = Car::findOrFail($id);
+        return view('cars.edit', compact('cars'));
     }
 
     /**
