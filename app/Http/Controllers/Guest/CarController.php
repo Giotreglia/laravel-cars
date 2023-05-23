@@ -101,5 +101,6 @@ class CarController extends Controller
         $car -> delete();
 
         return redirect()->route('cars.index', ['car'=> $car->id]);
+        
     }
 }
