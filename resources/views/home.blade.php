@@ -24,6 +24,11 @@
             @empty
                 <p>tutto venduto</p>
             @endforelse
+
+            <button><a href="{{ route('cars.index') }}">Mostra la index</a></button>
+            <button><a href="{{ route('cars.show',['car'=>$car->id]) }}">Mostra la show</a></button>
+            <button><a href="{{ route('cars.edit',['car'=>$car->id]) }}">Mostra la edit</a></button>
+            <button><a href="{{ route('cars.destroy',['car'=>$car->id]) }}">Mostra la destroy</a></button>
     </div>
 
 </body>

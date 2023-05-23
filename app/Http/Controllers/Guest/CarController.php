@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Guest\CarController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Car;
 
 class CarController extends Controller
 {
@@ -15,9 +16,9 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $car = Car::all();
 
-        return view('cars.index', compact('cars'));
+        return view('cars.index', compact('car'));
     }
 
     /**
@@ -38,7 +39,15 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $car = new Car();
+
+            $car->fill($data);
+
+        $car->save();
+
+        return redirect()->route('cars.show', ['car'=> $car->id]);
     }
 
     /**
@@ -62,7 +71,7 @@ class CarController extends Controller
     public function edit($id)
     {
         $car = Car::findOrFail($id);
-        return view('cars.edit', compact('cars'));
+        return view('cars.edit', compact('car'));
     }
 
     /**
@@ -74,7 +83,11 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car = Car::findorFail($id);
+        $data = $request->all();
+        $car->update($data);
+
+        return redirect()->route('cars.show', ['car'=> $car->id]);
     }
 
     /**
@@ -85,6 +98,9 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $car -> delete();
+
+        return redirect()->route('cars.index', ['car'=> $car->id]);
+        
     }
 }
