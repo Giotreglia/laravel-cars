@@ -29,6 +29,14 @@
                         <a class="btn btn-primary" href="{{ route('cars.show', ['car' => $car->id]) }}">Vedi dettagli</a>
                         <a class="btn btn-warning" href="{{ route('cars.edit', ['car' => $car->id]) }}">Modifica</a>
                     </td>
+                    <td>
+                        <form method="POST" action="{{ route('cars.destroy', ['car' => $car->id]) }}">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger">Cancella</button>
+                        </form>
+                    </td>
 
                 </tr>
             @endforeach

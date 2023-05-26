@@ -96,17 +96,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-<<<<<<< HEAD
+
         $car->delete();
-
         return redirect()->route('cars.index', ['car' => $car->id]);
-=======
-        $cars -> delete();
-
-        return redirect()->route('cars.index', ['cars'=> $car->id]);
-        
->>>>>>> 30740d58b8fcda98493a41833f45f7fbab28fc97
     }
 }
