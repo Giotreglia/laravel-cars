@@ -70,8 +70,8 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        $cars = Car::findOrFail($id);
-        return view('cars.edit', compact('cars'));
+        $car = Car::findOrFail($id);
+        return view('cars.edit', compact('car'));
     }
 
     /**
