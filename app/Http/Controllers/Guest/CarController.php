@@ -43,11 +43,11 @@ class CarController extends Controller
 
         $car = new Car();
 
-            $car->fill($data);
+        $car->fill($data);
 
         $car->save();
 
-        return redirect()->route('cars.show', ['car'=> $car->id]);
+        return redirect()->route('cars.show', ['car' => $car->id]);
     }
 
     /**
@@ -87,7 +87,7 @@ class CarController extends Controller
         $data = $request->all();
         $car->update($data);
 
-        return redirect()->route('cars.show', ['car'=> $car->id]);
+        return redirect()->route('cars.show', ['car' => $car->id]);
     }
 
     /**
@@ -98,9 +98,8 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        $car -> delete();
+        $car->delete();
 
-        return redirect()->route('cars.index', ['car'=> $car->id]);
-        
+        return redirect()->route('cars.index', ['car' => $car->id]);
     }
 }
