@@ -14,6 +14,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('cars.create') }}">Crea nuova macchina</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('optionals.index') }}">Vedi Option</a>
+                    </li>
                 </ul>
             </div>
         </div>

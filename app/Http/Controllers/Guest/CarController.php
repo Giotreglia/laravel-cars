@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Guest\CarController;
+use App\Http\Controllers\Guest\OptionalController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Optional;
+
 
 class CarController extends Controller
 {
@@ -28,7 +31,8 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('cars.create');
+        $optionals = Optional::all();
+        return view('cars.create',compact('optionals'));
     }
 
     /**
@@ -46,6 +50,10 @@ class CarController extends Controller
         $car->fill($data);
 
         $car->save();
+
+        if($request->has('optionals')){
+            $car->optionals()->attach($request->optionals);
+        };
 
         return redirect()->route('cars.show', ['car' => $car->id]);
     }
@@ -71,7 +79,8 @@ class CarController extends Controller
     public function edit($id)
     {
         $car = Car::findOrFail($id);
-        return view('cars.edit', compact('car'));
+        $optionals = Optional::all();
+        return view('cars.edit', compact('car','optionals'));
     }
 
     /**
@@ -85,6 +94,8 @@ class CarController extends Controller
     {
         $car = Car::findorFail($id);
         $data = $request->all();
+
+        $car->optionals()->sync($request->optionals);
         $car->update($data);
 
         return redirect()->route('cars.show', ['car' => $car->id]);

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guest;
 
 use App\Models\Optional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Guest\OptionalController;
 
 class OptionalController extends Controller
 {
@@ -15,7 +17,8 @@ class OptionalController extends Controller
      */
     public function index()
     {
-        
+        $optionals = Optional::all();
+        return view('optionals.index', compact('optionals'));
     }
 
     /**
