@@ -24,7 +24,7 @@ class CarController extends Controller
 
         
 
-        if($projects){
+        if($cars){
             return response()->json([
                 'success'=>true,
                 'results'=> $cars
