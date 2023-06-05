@@ -18,4 +18,23 @@ class CarController extends Controller
             ]
         );
     }
+
+    public function show($id){
+        $cars = Car::where('id',$id)->with('optionals')->first();
+
+        
+
+        if($projects){
+            return response()->json([
+                'success'=>true,
+                'results'=> $cars
+            ]);
+        }else{
+            return response()->json([
+                'success'=>false,
+                'error'=> 'Non trovato'
+            ]);
+        }
+            
+    }
 }
